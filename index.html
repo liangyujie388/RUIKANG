@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>反诈中心 - Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <!-- 顶部导航 -->
+    <header class="topnav">
+      <div class="topnav__inner">
+        <div class="brand">
+          <div class="brand__logo">反</div>
+          <div class="brand__name">反诈中心</div>
+        </div>
+
+        <nav class="menu" aria-label="主导航">
+          <button class="menu__item is-active" data-tab="home" type="button">首页</button>
+          <button class="menu__item" data-tab="scene" type="button">场景模拟</button>
+          <button class="menu__item" data-tab="judge" type="button">风险研判</button>
+          <button class="menu__item" data-tab="report" type="button">一键举报</button>
+          <button class="menu__item" data-tab="kb" type="button">反诈小课堂</button>
+        </nav>
+
+        <div class="topnav__right">
+          <button class="linkbtn" data-tab="report" type="button">恶意线索举报</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 首页 Banner -->
+    <section class="hero" id="tab-home">
+      <div class="hero__inner">
+        <div class="hero__left">
+          <div class="hero__kicker">Anti-fraud · Education · Prevention</div>
+          <h1 class="hero__title">面向反诈教育的智能客服（对话系统）</h1>
+          <p class="hero__desc">
+            为学生及个人用户提供反诈科普、风险研判与实时劝阻。支持典型骗局场景模拟、多轮对话问答、可疑链接/内容一键举报。
+          </p>
+
+          <div class="hero__actions">
+            <button class="btn btn--primary" data-tab="scene" type="button">开始场景模拟</button>
+            <button class="btn btn--ghost" data-tab="judge" type="button">立即风险研判</button>
+          </div>
+
+          <div class="hero__tips">
+            <div class="tipcard">
+              <div class="tipcard__t">核心能力</div>
+              <div class="tipcard__p">多轮对话 · 风险识别 · 劝阻话术 · 举报入口</div>
+            </div>
+            <div class="tipcard">
+              <div class="tipcard__t">接入方式</div>
+              <div class="tipcard__p">前端静态页 + Dify Embed（无需暴露团队 API Key）</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__right" aria-hidden="true">
+          <div class="illus">
+            <div class="illus__ring"></div>
+            <div class="illus__panel illus__panel--a"></div>
+            <div class="illus__panel illus__panel--b"></div>
+            <div class="illus__panel illus__panel--c"></div>
+            <div class="illus__dot illus__dot--1"></div>
+            <div class="illus__dot illus__dot--2"></div>
+            <div class="illus__dot illus__dot--3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 业务功能区（tab内容） -->
+    <section class="workbench">
+      <div class="workbench__inner">
+        <!-- 场景模拟 -->
+        <section class="panel is-show" id="tab-scene">
+          <div class="panel__head">
+            <h2>场景模拟</h2>
+            <p>选择一个典型骗局场景，复制剧情给 AI 进行识别与应对指导。</p>
+          </div>
+
+          <div class="cards">
+            <article class="card scenario" data-scenario="刷单返利">
+              <div class="card__title">刷单返利</div>
+              <div class="card__desc">小额返利诱导大额垫付，借口“解冻/保证金”。</div>
+              <button class="btn btn--ghost" type="button">进入剧情</button>
+            </article>
+            <article class="card scenario" data-scenario="游戏交易">
+              <div class="card__title">游戏交易</div>
+              <div class="card__desc">低价皮肤/账号，诱导跳转外链或仿冒担保平台。</div>
+              <button class="btn btn--ghost" type="button">进入剧情</button>
+            </article>
+            <article class="card scenario" data-scenario="冒充公检法">
+              <div class="card__title">冒充公检法</div>
+              <div class="card__desc">恐吓涉案，要求保密、屏幕共享、转入安全账户。</div>
+              <button class="btn btn--ghost" type="button">进入剧情</button>
+            </article>
+          </div>
+
+          <div class="card story">
+            <div class="story__head">
+              <div>
+                <div class="story__title" id="storyTitle">请选择一个场景开始</div>
+                <div class="story__meta">目标：识别风险点 → 给出正确应对 → 引导举报</div>
+              </div>
+              <button class="btn btn--primary" id="copyStoryBtn" type="button">复制剧情给 AI</button>
+            </div>
+            <pre class="story__body" id="storyBody">点击上面的“进入剧情”，这里会出现剧情文本。</pre>
+          </div>
+        </section>
+
+        <!-- 风险研判 -->
+        <section class="panel" id="tab-judge">
+          <div class="panel__head">
+            <h2>风险研判</h2>
+            <p>粘贴可疑链接/文本进行快速检测（规则引擎 Demo）。</p>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="form">
+                <label class="label" for="urlInput">可疑链接（URL）</label>
+                <input id="urlInput" class="input" placeholder="例如：http://xxbank-verify.com 或短链 https://t.cn/xxxx" />
+
+                <label class="label" for="textInput">可疑内容（文本）</label>
+                <textarea id="textInput" class="textarea" placeholder="例如：'10分钟内核验否则影响征信'、'转到安全账户'..."></textarea>
+
+                <div class="row">
+                  <button class="btn btn--primary" id="runJudgeBtn" type="button">开始研判</button>
+                  <button class="btn btn--ghost" id="fillDemoBtn" type="button">填充示例</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card__title">研判结果</div>
+              <div id="riskBadge" class="risk risk--low">LOW</div>
+              <ul id="signals" class="list"></ul>
+
+              <div class="card__title" style="margin-top: 12px">劝阻建议</div>
+              <div id="advice" class="advice"></div>
+              <div class="row">
+                <button class="btn btn--ghost" id="copyAdviceBtn" type="button">复制话术</button>
+                <button class="btn btn--ghost" id="openAiBtnFromJudge" type="button">打开 AI 助手</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 一键举报 -->
+        <section class="panel" id="tab-report">
+          <div class="panel__head">
+            <h2>一键举报</h2>
+            <p>提交可疑链接/内容（Demo：本地保存，后续对接你们后端）。</p>
+          </div>
+
+          <div class="card">
+            <div class="form">
+              <label class="label" for="reportType">举报类型</label>
+              <select id="reportType" class="input">
+                <option value="phishing">钓鱼链接</option>
+                <option value="impersonation">冒充机构</option>
+                <option value="investment">虚假投资</option>
+                <option value="task">刷单返利</option>
+                <option value="loan">校园贷/网贷</option>
+              </select>
+
+              <label class="label" for="reportEvidence">证据（链接/账号/群号/内容）</label>
+              <textarea id="reportEvidence" class="textarea" placeholder="尽量填写完整信息"></textarea>
+
+              <div class="row">
+                <button class="btn btn--primary" id="submitReportBtn" type="button">提交举报</button>
+                <button class="btn btn--ghost" id="viewReportsBtn" type="button">查看本地记录</button>
+              </div>
+
+              <div id="reportLog" class="log is-hidden"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 反诈小课堂 -->
+        <section class="panel" id="tab-kb">
+          <div class="panel__head">
+            <h2>反诈小课堂</h2>
+            <p>关键词检索（Demo：静态知识条目）。</p>
+          </div>
+
+          <div class="card">
+            <input id="kbSearch" class="input" placeholder="搜索：刷单 / 公检法 / 安全账户 / 验证码..." />
+            <div id="kbList" class="kb"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>提示：右下角为 AI 助手入口（可嵌入 Dify）。</span>
+    </footer>
+
+    <!-- 右下角 AI 入口（浮动按钮） -->
+    <button class="ai-fab" id="aiFab" type="button" aria-label="打开 AI 助手">
+      <span class="ai-fab__icon">AI</span>
+      <span class="ai-fab__text">反诈助手</span>
+    </button>
+
+    <!-- AI 侧边面板（点右下角打开） -->
+    <aside
+      class="ai-drawer"
+      id="aiDrawer"
+      aria-hidden="true"
+      data-bot-placeholder="请输入您要判别的内容(支持文本、图片、视频)"
+    >
+      <div class="ai-drawer__head">
+        <div>
+          <div class="ai-drawer__title">AI 反诈助手</div>
+          <div class="ai-drawer__sub">把场景、链接、文本或图片传进来，让 AI 判断风险并生成劝阻话术</div>
+        </div>
+        <div class="ai-drawer__actions">
+          <button class="btn btn--ghost" id="copyContextBtn" type="button">复制当前内容</button>
+          <button class="btn btn--ghost" id="loadWorkflowBtn" type="button">加载工作流(YML)</button>
+          <div id="workflowName" class="workflow-name" style="margin-left:8px;font-size:12px;color:#666;"></div>
+          <button class="btn btn--ghost" id="openConfigBtn" type="button">配置 Key</button>
+          <button class="btn btn--ghost" id="closeAiBtn" type="button">关闭</button>
+        </div>
+      </div>
+
+      <!-- Chat messages area -->
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <!-- Dify 配置面板（隐藏，点击配置 Key 显示） -->
+      <div id="difyConfigPanel" style="display:none;padding:12px;border-top:1px solid rgba(255,255,255,.06);">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <label class="label">Dify Base URL</label>
+          <input id="cfgBaseUrl" class="input" placeholder="https://api.dify.ai" />
+          <label class="label">Dify Pro API Key (优先)</label>
+          <input id="cfgProKey" class="input" placeholder="DIFY_PRO_API_KEY" />
+          <div style="display:flex;gap:8px;margin-top:6px;">
+            <button class="btn btn--primary" id="saveDifyConfigBtn" type="button">保存</button>
+            <button class="btn btn--ghost" id="cancelDifyConfigBtn" type="button">取消</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending attachment previews (shown above input bar) -->
+      <div class="chat-attachments-preview is-hidden" id="chatAttachmentsPreview"></div>
+
+      <!-- Chat input bar -->
+      <div class="chat-input-bar">
+        <input
+          type="file"
+          id="mediaFileInput"
+          class="media-upload__input"
+          accept="image/jpeg,image/png,image/gif,image/webp,image/svg+xml,video/mp4,video/webm,video/ogg,video/quicktime"
+          multiple
+        />
+        <button class="chat-attach-btn" id="chatAttachBtn" type="button" title="上传图片/视频附件" aria-label="上传图片/视频附件">📎</button>
+        <textarea class="chat-textarea" id="chatInput" placeholder="请输入您要判别的内容…" rows="1"></textarea>
+        <button class="chat-send-btn" id="chatSendBtn" type="button" aria-label="发送消息">↑</button>
+      </div>
+    </aside>
+
+    <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+    <!-- Dify API 配置：不要把真实 Key 提交到仓库（前端可见） -->
+    <script>
+      window.DIFY_CONFIG = {
+        // baseUrl 只填域名/协议（不要带 /v1），代码里会拼接具体 API 路径
+        baseUrl: localStorage.getItem("DIFY_BASE_URL") || "https://api.dify.ai",
+        apiKey: localStorage.getItem("DIFY_PRO_API_KEY") || localStorage.getItem("DIFY_API_KEY") || "",
+        workflow_yaml: "./反诈劝阻助手(pro版) (1).yml",
+      };
+    </script>
+
+    <!-- 隐藏的工作流 YML 上传输入（通过右下 AI 抽屉的“加载工作流”按钮触发） -->
+    <input id="workflowFileInput" type="file" accept=".yml,.yaml,text/yaml" style="display:none" />
+
+    <!-- 你的项目里 JS 文件名是 ap.js（注意别写成 app.js） -->
+    <script src="./ap.js"></script>
+
+    <!-- 如需使用 Dify WebApp/Embed（iframe/script）方式，请不要复用 #aiDrawer/#closeAiBtn 这类 id，避免与本地聊天抽屉冲突。 -->
+  </body>
+</html>

@@ -1,0 +1,1054 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 反诈劝阻助手(pro版)
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.1.41@85be0ee644e13561909e1dc99c73a19896acdcc4e4162f91e2e615cc88d35b44
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: true
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: true
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1777704603820-source-1777707082747-target
+      selected: false
+      source: '1777704603820'
+      sourceHandle: source
+      target: '1777707082747'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1777707082747-source-1777707242964-target
+      selected: false
+      source: '1777707082747'
+      sourceHandle: source
+      target: '1777707242964'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1777707242964-true-1777707361444-target
+      selected: false
+      source: '1777707242964'
+      sourceHandle: 'true'
+      target: '1777707361444'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1777707242964-false-1777707505741-target
+      selected: false
+      source: '1777707242964'
+      sourceHandle: 'false'
+      target: '1777707505741'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1777707505741-source-1777707627587-target
+      selected: false
+      source: '1777707505741'
+      sourceHandle: source
+      target: '1777707627587'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: knowledge-retrieval
+      id: 1777707627587-source-1777707677668-target
+      selected: false
+      source: '1777707627587'
+      sourceHandle: source
+      target: '1777707677668'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: code
+      id: 1777707361444-source-1777707755604-target
+      selected: false
+      source: '1777707361444'
+      sourceHandle: source
+      target: '1777707755604'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: code
+      id: 1777707677668-source-1777707755604-target
+      selected: false
+      source: '1777707677668'
+      sourceHandle: source
+      target: '1777707755604'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1777708627285-source-1777710209901-target
+      selected: false
+      source: '1777708627285'
+      sourceHandle: source
+      target: '1777710209901'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1777707755604-source-1777815991542-target
+      selected: false
+      source: '1777707755604'
+      sourceHandle: source
+      target: '1777815991542'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1777815991542-source-1777708627285-target
+      selected: false
+      source: '1777815991542'
+      sourceHandle: source
+      target: '1777708627285'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: user_input
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: 用户描述/对方话术
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: text
+        - default: ''
+          hint: ''
+          label: 是否已转账/充值
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: money_sent
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          - audio
+          - video
+          allowed_file_upload_methods:
+          - local_file
+          default: ''
+          hint: ''
+          label: files_user
+          max_length: 5
+          options: []
+          placeholder: ''
+          required: false
+          type: file-list
+          variable: files_user
+      height: 160
+      id: '1777704603820'
+      position:
+        x: 2.215119847782205
+        y: 0.9841446305733825
+      positionAbsolute:
+        x: 2.215119847782205
+        y: 0.9841446305733825
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "import re\nimport json\nimport requests\nfrom typing import Dict, List,\
+          \ Set, Tuple, Any\n\n# =========================\n# ✅ 阿里云 Qwen-VL-Plus 配置\n\
+          # =========================\nQWEN_VL_URL = \"https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation\"\
+          \nQWEN_API_KEY = \"sk-xxxxxxxxxxxxxxxxxxxxxxxx\"  # ← 务必换成你的真实 API Key\n\
+          \nHEADERS = {\n    \"Authorization\": f\"Bearer {QWEN_API_KEY}\",\n    \"\
+          Content-Type\": \"application/json\"\n}\n\n# =========================\n\
+          # ✅ 图片分析函数（防崩溃版）\n# =========================\ndef qwen_vl_plus_analyze(image_url:\
+          \ str) -> str:\n    \"\"\"\n    使用 qwen-vl-plus 分析图片（反诈专用）\n    返回图片的简短文字描述\n\
+          \    \"\"\"\n    payload = {\n        \"model\": \"qwen-vl-plus\",\n   \
+          \     \"input\": {\n            \"messages\": [\n                {\n   \
+          \                 \"role\": \"user\",\n                    \"content\":\
+          \ [\n                        {\n                            \"type\": \"\
+          text\",\n                            \"text\": (\n                     \
+          \           \"你是反诈专家。\"\n                                \"请分析这张图片是否可能涉及诈骗，例如：\"\
+          \n                                \"转账截图、伪造证件、虚假客服、钓鱼链接、二维码、\"\n       \
+          \                         \"虚假投资平台、冒充官方人员等。\"\n                        \
+          \        \"请用简练中文描述图片中的关键内容，不超过150字。\"\n                            )\n\
+          \                        },\n                        {\n               \
+          \             \"type\": \"image\",\n                            \"image\"\
+          : image_url\n                        }\n                    ]\n        \
+          \        }\n            ]\n        }\n    }\n\n    try:\n        r = requests.post(QWEN_VL_URL,\
+          \ headers=HEADERS, json=payload, timeout=20)\n        r.raise_for_status()\n\
+          \        data = r.json()\n        content = data[\"output\"][\"choices\"\
+          ][0][\"message\"][\"content\"].strip()\n        # 防止返回过长，截断处理\n        return\
+          \ content[:200] + \"…\" if len(content) > 200 else content\n    except Exception\
+          \ as e:\n        # 出错时返回空字符串，不影响主流程\n        return \"\"\n\n# =========================\n\
+          # ✅ 图片提取（只取第一张，防异常）\n# =========================\ndef extract_image_text(files:\
+          \ Any) -> str:\n    \"\"\"\n    从 Dify 传入的 files 中提取第一张图片并分析\n    \"\"\"\
+          \n    if not isinstance(files, list):\n        return \"\"\n\n    for f\
+          \ in files:\n        if not isinstance(f, dict):\n            continue\n\
+          \        if f.get(\"type\", \"\").startswith(\"image/\"):\n            url\
+          \ = f.get(\"url\")\n            if url:\n                return qwen_vl_plus_analyze(url)\n\
+          \    return \"\"\n\n# =========================\n# ✅ 你原来的规则函数（完全不动）\n# =========================\n\
+          \ndef smart_tokenize(text: str) -> Tuple[Set[str], List[str]]:\n    if not\
+          \ text or not isinstance(text, str):\n        return set(), []\n    text_lower\
+          \ = text.lower().strip()\n    pattern = r'[\\u4e00-\\u9fa5]{2,}|[a-z]{2,}|\\\
+          d+'\n    tokens = re.findall(pattern, text_lower)\n    if not tokens:\n\
+          \        tokens = list(text_lower)\n    return set(tokens), tokens\n\ndef\
+          \ contains_fraud_context(text: str, tokens: List[str]) -> bool:\n    if\
+          \ not text or not tokens:\n        return False\n    text_lower = text.lower()\n\
+          \    actions = [\"打电话说\",\"发短信\",\"加微信\",\"加qq\",\"下载\",\"安装\",\"点击\",\n\
+          \               \"转账\",\"汇款\",\"支付\",\"充值\",\"投资\",\"理财\",\"刷单\",\"做任务\"\
+          ,\n               \"退款\",\"理赔\",\"赔偿\",\"中奖\",\"领奖\",\"贷款\",\"借款\",\"借钱\"\
+          ,\n               \"验证码\",\"密码\",\"账号\",\"银行卡\",\"身份证\",\"远程\",\"共享\"]\n\
+          \    scenes = [\"客服说\",\"快递说\",\"公安局\",\"检察院\",\"法院\",\"领导让\",\n       \
+          \       \"老板让\",\"朋友借\",\"亲戚借\",\"网友让\",\"导师带\",\"内部消息\",\n            \
+          \  \"稳赚不赔\",\"高额回报\",\"零风险\",\"日结\",\"兼职\",\"在家做\"]\n    for a in actions:\n\
+          \        if a in text_lower:\n            return True\n    for s in scenes:\n\
+          \        if s in text_lower:\n            return True\n    me = [\"我接到\"\
+          ,\"我收到\",\"我遇到\",\"我被\",\"我有\",\"我要\",\"我想\"]\n    for p in me:\n      \
+          \  if p in text_lower:\n            for t in tokens:\n                if\
+          \ len(t)>=2 and t in [\"诈骗\",\"骗局\",\"骗子\",\"骗钱\",\"骗了\"]:\n           \
+          \         return True\n    return False\n\ndef is_irrelevant_topic(text:\
+          \ str, tokens: List[str]) -> bool:\n    if not text:\n        return True\n\
+          \    text_lower = text.lower()\n    words = [\"小狗\",\"小猫\",\"宠物\",\"狗狗\"\
+          ,\"猫猫\",\"动物\",\"你好\",\"在吗\",\"哈喽\",\n             \"天气\",\"下雨\",\"晴天\"\
+          ,\"吃饭\",\"美食\",\"餐厅\",\"外卖\",\"今天\",\"明天\",\"电影\"]\n    for w in words:\n\
+          \        if w in text_lower:\n            return True\n    if len(text_lower.strip())\
+          \ <= 4:\n        return True\n    return False\n\n# =========================\n\
+          # ✅ 主函数（核心修复点）\n# =========================\n\ndef main(test: str, money_sent:\
+          \ str, **kwargs) -> Dict[str, Any]:\n    \"\"\"\n    kwargs 用于吸收 Dify 可能多传的参数（如\
+          \ file_type）\n    \"\"\"\n    # 从 kwargs 中安全地取出 files\n    files = kwargs.get(\"\
+          files\", [])\n\n    text_raw = str(test) if test is not None else \"\"\n\
+          \    money_sent_raw = str(money_sent) if money_sent is not None else \"\"\
+          \n\n    # 提取图片描述\n    image_text = extract_image_text(files)\n\n    # 拼接文本（仅在图片有描述时拼接）\n\
+          \    if image_text:\n        combined_text = f\"{text_raw} [图片描述: {image_text}]\"\
+          \n    else:\n        combined_text = text_raw\n\n    user_words, token_list\
+          \ = smart_tokenize(combined_text)\n\n    # ✅ 修复点：仅用原始文本判断是否为闲聊，避免图片描述干扰\n\
+          \    if is_irrelevant_topic(text_raw, token_list):\n        return {\n \
+          \           \"rule_hit\": False,\n            \"fraud_candidates_rule_\"\
+          : \"\",\n            \"signals_rule_\": \"\",\n            \"risk_level_rule_\"\
+          : \"低\",\n            \"money_sent_\": money_sent_raw,\n            \"retrieval_query_rule_\"\
+          : combined_text\n        }\n\n    has_fraud_context = contains_fraud_context(combined_text,\
+          \ token_list)\n    doubtful = any(k in combined_text.lower() for k in [\"\
+          咨询\",\"询问\",\"是不是\",\"真的吗\",\"怎么回事\"])\n\n    rules = [\n        (\"冒充客服退款/快递理赔\"\
+          , [\"客服.*退款\",\"快递.*理赔\",\"下载.*app\"], \"高\", 2, True),\n        (\"刷单返利/做任务\"\
+          , [\"刷单\",\"做任务\",\"垫付\"], \"高\", 2, True),\n        (\"投资理财/杀猪盘\", [\"\
+          投资\",\"稳赚\",\"导师带\"], \"高\", 2, True),\n        (\"冒充领导/熟人转账\", [\"领导\"\
+          ,\"老板\",\"急用钱\"], \"高\", 2, True),\n        (\"钓鱼链接/木马APP\", [\"链接\",\"\
+          验证码\",\"安装\"], \"高\", 2, True),\n    ]\n\n    candidates, signals, levels\
+          \ = [], [], []\n\n    for name, patterns, level, th, need_ctx in rules:\n\
+          \        t = th\n        if doubtful:\n            t += 1\n        if need_ctx\
+          \ and not has_fraud_context:\n            t += 2\n        matched = [p for\
+          \ p in patterns if re.search(p, combined_text, re.I)]\n        if len(matched)\
+          \ >= t:\n            candidates.append(name)\n            levels.append(level)\n\
+          \            signals.extend([f\"{name}::{p}\" for p in matched])\n\n   \
+          \ risk = \"低\"\n    if \"高\" in levels:\n        risk = \"高\"\n    elif\
+          \ \"中\" in levels:\n        risk = \"中\"\n\n    return {\n        \"rule_hit\"\
+          : bool(candidates),\n        \"fraud_candidates_rule_\": \"、\".join(set(candidates)),\n\
+          \        \"signals_rule_\": \"；\".join(set(signals)),\n        \"risk_level_rule_\"\
+          : risk,\n        \"money_sent_\": money_sent_raw,\n        \"retrieval_query_rule_\"\
+          : combined_text\n    }"
+        code_language: python3
+        outputs:
+          fraud_candidates_rule_:
+            children: null
+            type: string
+          money_sent_:
+            children: null
+            type: string
+          retrieval_query_rule_:
+            children: null
+            type: string
+          risk_level_rule_:
+            children: null
+            type: string
+          rule_hit:
+            children: null
+            type: boolean
+          signals_rule_:
+            children: null
+            type: string
+        selected: false
+        title: PY_规则引擎
+        type: code
+        variables:
+        - value_selector:
+          - '1777704603820'
+          - text
+          value_type: string
+          variable: test
+        - value_selector:
+          - '1777704603820'
+          - money_sent
+          value_type: string
+          variable: money_sent
+        - value_selector:
+          - '1777704603820'
+          - files_user
+          value_type: array[file]
+          variable: file_type
+      height: 51
+      id: '1777707082747'
+      position:
+        x: 369.7269588124152
+        y: 52.184973774907974
+      positionAbsolute:
+        x: 369.7269588124152
+        y: 52.184973774907974
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 16044090-29ca-4b67-9816-e20500deaf44
+            value: true
+            varType: boolean
+            variable_selector:
+            - '1777707082747'
+            - rule_hit
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 123
+      id: '1777707242964'
+      position:
+        x: 734.2255395510449
+        y: 4.353997949407926
+      positionAbsolute:
+        x: 734.2255395510449
+        y: 4.353997949407926
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - +UncklBpcMR/WVwzg4Khj11J18WivQKsUEV7C4XAgx2bONwbiq+tU2nnc1BWFD8y
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: qwen3-rerank
+            provider: langgenius/tongyi/tongyi
+          score_threshold: null
+          top_k: 2
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-v1
+              embedding_provider_name: langgenius/tongyi/tongyi
+              vector_weight: 0.7
+            weight_type: customized
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1777707082747'
+        - retrieval_query_rule_
+        retrieval_mode: multiple
+        selected: false
+        title: KB_检索(规则命中)
+        type: knowledge-retrieval
+      height: 89
+      id: '1777707361444'
+      position:
+        x: 1473.2873382148448
+        y: -136.66321337966212
+      positionAbsolute:
+        x: 1473.2873382148448
+        y: -136.66321337966212
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.1
+          mode: chat
+          name: qwen-vl-plus
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: ae7db31c-dad2-4162-8450-7143db998b39
+          role: system
+          text: "你是反诈场景的“轻量意图识别与诈骗类型分类器”。\n**强制规则（必须遵守）：**\n1. 只输出严格 JSON，不要输出任何额外文字、不要用\
+            \ Markdown 代码块包裹。\n2. 当用户描述为**明显无关日常话题**（如“小狗”“天气”“吃饭”“电影”“宠物”“游戏”等，与诈骗无关的内容）时，**必须返回**：\n\
+            \   {\n     \"fraud_candidates\": [],\n     \"risk_level\": \"低\",\n \
+            \    \"key_signals\": [],\n     \"intent\": \"普通咨询\"\n   }\n3. 当用户描述**含糊/简短（字数＜5）且无明显诈骗特征**时，默认返回\
+            \ `risk_level: \"低\"`。\n4. 当用户使用“咨询”“询问”“是不是”“真的吗”等**怀疑/求证语气**时，谨慎判断，不轻易下“高风险”结论。\n\
+            \n**新增：图片识别规则（优先级高于文本）**\n- 如果用户同时提供了图片和文字，你必须**先基于图片内容进行识别**，再结合文字综合判断。\n\
+            - 图片中可能包含：转账截图、二维码、陌生APP界面、客服聊天记录、可疑链接、验证码、银行卡信息等。\n- 若图片中存在以下任一情况，应视为高风险信号：\n\
+            \  - 转账/汇款/充值界面\n  - 屏幕共享/远程控制提示\n  - “稳赚不赔”“高额回报”类投资宣传\n  - 索要验证码、密码、银行卡号\n\
+            - 若图片内容与文字描述明显不符（如文字说是“朋友聊天”，图片却是转账页），以**图片内容为准**。\n"
+        - id: 90c78c0d-e407-46ab-b648-ad30712cbe11
+          role: user
+          text: "请根据以下信息判断：\n1) 可能的诈骗类型（可多选，无则留空数组）\n2) 风险等级（高/中/低）\n3) 关键风险信号（关键词/句式/行为，无则留空数组）\n\
+            4) 用户意图（识别是否诈骗/求助止付/生成劝阻话术/核验身份/普通咨询等）\n\n**特别约束（优先级高于任务）：**\n- 如果描述是**明显无关日常话题**（如关于宠物、天气、饮食、娱乐、闲聊等），风险等级必须为\
+            \ `低`，诈骗类型为空，意图为 `普通咨询`。\n- 如果描述**含糊不清/缺乏具体诈骗特征**（如仅说“有人找我”“不知道怎么办”），风险等级应为\
+            \ `低` 或 `中`。\n- 只有出现**明确的诈骗特征组合**（如“转账+验证码”“下载APP+屏幕共享”“投资+稳赚不赔”等）时，才判断为\
+            \ `高` 风险。\n\n仅输出 JSON，格式必须完全一致：\n{\n  \"fraud_candidates\": [\"类型1\",\"\
+            类型2\"],\n  \"risk_level\": \"高\",\n  \"key_signals\": [\"信号1\",\"信号2\"\
+            ],\n  \"intent\": \"意图\"\n}\n\n用户描述：{{#1777704603820.text#}}\n"
+        selected: false
+        title: LLM_轻量分类器_JSON
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1777704603820'
+            - files_user
+          enabled: true
+      height: 87
+      id: '1777707505741'
+      position:
+        x: 1042
+        y: 146.6833333333334
+      positionAbsolute:
+        x: 1042
+        y: 146.6833333333334
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import json, re\n\ndef _safe_json(s):\n    if s is None:\n        return\
+          \ {}\n    if isinstance(s, dict):\n        return s\n    if not isinstance(s,\
+          \ str):\n        return {}\n    t = s.strip()\n    if not t:\n        return\
+          \ {}\n    try:\n        return json.loads(t)\n    except Exception:\n  \
+          \      pass\n    m = re.search(r\"\\{.*\\}\", t, flags=re.S)\n    if m:\n\
+          \        try:\n            return json.loads(m.group(0))\n        except\
+          \ Exception:\n            return {}\n    return {}\n\ndef _as_str(x):\n\
+          \    if x is None:\n        return \"\"\n    if isinstance(x, str):\n  \
+          \      return x\n    try:\n        return json.dumps(x, ensure_ascii=False)\n\
+          \    except Exception:\n        return str(x)\n\n# 形参名要与“输入变量名”一致：classifier_\
+          \ / text_raw\ndef main(classifier_: str, text_raw: str):\n    data = _safe_json(classifier_)\n\
+          \n    fraud_candidates = data.get(\"fraud_candidates\") or data.get(\"type\"\
+          ) or \"未识别到明确类型\"\n    risk_level = data.get(\"risk_level\") or data.get(\"\
+          risk\") or \"中\"\n    intent = data.get(\"intent\") or \"诈骗风险研判与劝阻\"\n\n\
+          \    key_signals = data.get(\"key_signals\") or data.get(\"signals\") or\
+          \ data.get(\"reasons\") or []\n    if isinstance(key_signals, list):\n \
+          \       signals = \"；\".join([_as_str(x) for x in key_signals if _as_str(x).strip()])\
+          \ or \"（无）\"\n    else:\n        signals = _as_str(key_signals).strip()\
+          \ or \"（无）\"\n\n    retrieval_query = \"用户描述：\" + (text_raw or \"\")\n\n\
+          \    return {\n        \"fraud_candidates\": _as_str(fraud_candidates),\n\
+          \        \"signals\": _as_str(signals),\n        \"risk_level_hint\": _as_str(risk_level),\n\
+          \        \"intent\": _as_str(intent),\n        \"retrieval_query\": _as_str(retrieval_query),\n\
+          \    }"
+        code_language: python3
+        outputs:
+          fraud_candidates:
+            children: null
+            type: string
+          intent:
+            children: null
+            type: string
+          retrieval_query:
+            children: null
+            type: string
+          risk_level_hint:
+            children: null
+            type: string
+          signals:
+            children: null
+            type: string
+        selected: false
+        title: PY_解析合并候选(LLM兜底)
+        type: code
+        variables:
+        - value_selector:
+          - '1777707505741'
+          - text
+          value_type: string
+          variable: classifier_
+        - value_selector:
+          - '1777704603820'
+          - text
+          value_type: string
+          variable: text_raw
+      height: 51
+      id: '1777707627587'
+      position:
+        x: 1394.172468434531
+        y: 201.15285968128703
+      positionAbsolute:
+        x: 1394.172468434531
+        y: 201.15285968128703
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - +UncklBpcMR/WVwzg4Khj11J18WivQKsUEV7C4XAgx2bONwbiq+tU2nnc1BWFD8y
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: qwen3-rerank
+            provider: langgenius/tongyi/tongyi
+          score_threshold: null
+          top_k: 4
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1777707627587'
+        - retrieval_query
+        retrieval_mode: multiple
+        selected: false
+        title: KB_检索(兜底分类)
+        type: knowledge-retrieval
+      height: 89
+      id: '1777707677668'
+      position:
+        x: 1763.3247522474821
+        y: 163.35122586940733
+      positionAbsolute:
+        x: 1763.3247522474821
+        y: 163.35122586940733
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import json\nimport re\nfrom typing import Dict, Any, List\n\ndef _kb_result_to_text(kb_result:\
+          \ Any) -> str:\n    \"\"\"\n    将知识库检索结果转换为文本\n    \"\"\"\n    if not kb_result:\n\
+          \        return \"\"\n    \n    parts = []\n    \n    if isinstance(kb_result,\
+          \ list):\n        for item in kb_result:\n            if isinstance(item,\
+          \ str):\n                parts.append(item.strip())\n            elif isinstance(item,\
+          \ dict):\n                for key in [\"content\", \"text\", \"segment\"\
+          , \"page_content\", \"chunk\", \"document\"]:\n                    v = item.get(key)\n\
+          \                    if isinstance(v, str) and v.strip():\n            \
+          \            parts.append(v.strip())\n                        break\n  \
+          \              else:\n                    doc = item.get(\"document\")\n\
+          \                    if isinstance(doc, dict):\n                       \
+          \ for key in [\"content\", \"text\"]:\n                            v = doc.get(key)\n\
+          \                            if isinstance(v, str) and v.strip():\n    \
+          \                            parts.append(v.strip())\n                 \
+          \               break\n                    else:\n                     \
+          \   parts.append(json.dumps(item, ensure_ascii=False))\n    \n    uniq_parts\
+          \ = []\n    seen = set()\n    for p in parts:\n        if p and p not in\
+          \ seen:\n            seen.add(p)\n            uniq_parts.append(p)\n   \
+          \ \n    return \"\\n\\n\".join(uniq_parts) if uniq_parts else \"\"\n\ndef\
+          \ _extract_json(text: str) -> Dict[str, Any]:\n    \"\"\"\n    尝试从文本中提取JSON\n\
+          \    \"\"\"\n    if not text:\n        return {}\n    \n    text = text.strip()\n\
+          \    \n    try:\n        return json.loads(text)\n    except json.JSONDecodeError:\n\
+          \        pass\n    \n    pattern = r'\\{[^{}]*\\}'\n    matches = re.findall(pattern,\
+          \ text, re.DOTALL)\n    if matches:\n        for match in matches:\n   \
+          \         try:\n                return json.loads(match)\n            except\
+          \ json.JSONDecodeError:\n                continue\n    \n    return {}\n\
+          \ndef main(\n    kb_rule_: List[Any],\n    kb_llm_: List[Any],\n    rule_hit:\
+          \ bool,\n    fraud_candidates_rule: str,\n    signals_rule: str,\n    risk_level_rule:\
+          \ str,\n    text_raw: str,\n    money_sent: str,\n    classifier_text: str\n\
+          ) -> Dict[str, Any]:\n    \"\"\"\n    统一上下文与变量处理主函数\n    \"\"\"\n    kb_rule_safe\
+          \ = kb_rule_ if kb_rule_ is not None else []\n    kb_llm_safe = kb_llm_\
+          \ if kb_llm_ is not None else []\n    \n    context_arr = kb_rule_safe if\
+          \ rule_hit and kb_rule_safe else kb_llm_safe\n    context_text = _kb_result_to_text(context_arr)\n\
+          \    \n    if not context_text.strip():\n        context_text = \"（知识库未检索到强相关片段，以下为通用反诈建议）\"\
+          \n    \n    fraud_candidates_rule_safe = str(fraud_candidates_rule) if fraud_candidates_rule\
+          \ is not None else \"\"\n    signals_rule_safe = str(signals_rule) if signals_rule\
+          \ is not None else \"\"\n    risk_level_rule_safe = str(risk_level_rule)\
+          \ if risk_level_rule is not None else \"低\"\n    text_raw_safe = str(text_raw)\
+          \ if text_raw is not None else \"\"\n    money_sent_safe = str(money_sent)\
+          \ if money_sent is not None else \"\"\n    classifier_text_safe = str(classifier_text)\
+          \ if classifier_text is not None else \"\"\n    \n    fraud_candidates =\
+          \ None\n    signals = None\n    risk_level_hint = risk_level_rule_safe\n\
+          \    intent = \"识别是否诈骗并给出建议\"\n    \n    if rule_hit:\n        fraud_candidates\
+          \ = fraud_candidates_rule_safe\n        signals = signals_rule_safe\n  \
+          \  else:\n        data = _extract_json(classifier_text_safe)\n        \n\
+          \        candidates_data = data.get(\"fraud_candidates\", [])\n        if\
+          \ isinstance(candidates_data, list):\n            fraud_candidates = \"\
+          、\".join([str(x) for x in candidates_data if x])\n        elif isinstance(candidates_data,\
+          \ str):\n            fraud_candidates = candidates_data\n        else:\n\
+          \            fraud_candidates = \"未识别到明确类型\"\n        \n        key_signals\
+          \ = data.get(\"key_signals\", [])\n        if isinstance(key_signals, list):\n\
+          \            signals_list = [str(x) for x in key_signals if x]\n       \
+          \     signals = \"；\".join(signals_list) if signals_list else \"（无）\"\n\
+          \        elif isinstance(key_signals, str):\n            signals = key_signals\
+          \ if key_signals else \"（无）\"\n        else:\n            signals = \"（无）\"\
+          \n        \n        risk_level_hint = data.get(\"risk_level\", risk_level_hint)\n\
+          \        intent = data.get(\"intent\", intent)\n    \n    if not fraud_candidates\
+          \ or not fraud_candidates.strip():\n        fraud_candidates = \"未识别到明确类型\"\
+          \n    \n    if not signals or not signals.strip():\n        signals = \"\
+          （无）\"\n    \n    return {\n        \"context_text\": context_text,\n   \
+          \     \"fraud_candidates\": str(fraud_candidates),\n        \"signals\"\
+          : str(signals),\n        \"risk_level_hint\": str(risk_level_hint),\n  \
+          \      \"intent\": str(intent),\n    }\n\nif __name__ == \"__main__\":\n\
+          \    \"\"\"测试用例\"\"\"\n    \n    # 模拟知识库检索结果\n    kb_result = [\n      \
+          \  {\n            \"content\": \"冒充客服退款诈骗通常以快递丢失、订单异常为由，要求下载屏幕共享软件，获取验证码。\"\
+          ,\n            \"score\": 0.85\n        }\n    ]\n    \n    # 测试1: 规则命中\n\
+          \    result1 = main(\n        kb_rule_=kb_result,\n        kb_llm_=[],\n\
+          \        rule_hit=True,\n        fraud_candidates_rule=\"冒充客服退款/快递理赔/退改签\"\
+          ,\n        signals_rule=\"冒充客服退款/快递理赔/退改签::客服.*退款\",\n        risk_level_rule=\"\
+          高\",\n        text_raw=\"客服打电话说快递丢了要退款\",\n        money_sent=\"未转账\",\n\
+          \        classifier_text='{\"fraud_candidates\": [\"冒充客服退款/快递理赔/退改签\"],\
+          \ \"risk_level\": \"高\", \"key_signals\": [\"客服\", \"退款\"], \"intent\":\
+          \ \"识别是否诈骗\"}'\n    )\n    \n    print(\"测试1 - 规则命中:\")\n    print(json.dumps(result1,\
+          \ ensure_ascii=False, indent=2))\n    print()\n    \n    # 测试2: 规则未命中，使用LLM分类器\n\
+          \    result2 = main(\n        kb_rule_=[],\n        kb_llm_=kb_result,\n\
+          \        rule_hit=False,\n        fraud_candidates_rule=\"\",\n        signals_rule=\"\
+          \",\n        risk_level_rule=\"低\",\n        text_raw=\"有个人说投资\",\n    \
+          \    money_sent=\"未转账\",\n        classifier_text='{\"fraud_candidates\"\
+          : [\"投资理财/杀猪盘\"], \"risk_level\": \"中\", \"key_signals\": [\"投资\", \"内部消息\"\
+          ], \"intent\": \"识别是否诈骗\"}'\n    )\n    \n    print(\"测试2 - 规则未命中，使用LLM分类器:\"\
+          )\n    print(json.dumps(result2, ensure_ascii=False, indent=2))\n    print()\n\
+          \    \n    # 测试3: 空输入\n    result3 = main(\n        kb_rule_=[],\n     \
+          \   kb_llm_=[],\n        rule_hit=False,\n        fraud_candidates_rule=\"\
+          \",\n        signals_rule=\"\",\n        risk_level_rule=\"低\",\n      \
+          \  text_raw=\"\",\n        money_sent=\"\",\n        classifier_text=\"\"\
+          \n    )\n    \n    print(\"测试3 - 空输入:\")\n    print(json.dumps(result3,\
+          \ ensure_ascii=False, indent=2))\n"
+        code_language: python3
+        outputs:
+          context_text:
+            children: null
+            type: string
+          fraud_candidates:
+            children: null
+            type: string
+          intent:
+            children: null
+            type: string
+          risk_level_hint:
+            children: null
+            type: string
+          signals:
+            children: null
+            type: string
+        selected: false
+        title: PY_统一上下文与变量
+        type: code
+        variables:
+        - value_selector:
+          - '1777707361444'
+          - result
+          value_type: array[object]
+          variable: kb_rule_
+        - value_selector:
+          - '1777707677668'
+          - result
+          value_type: array[object]
+          variable: kb_llm_
+        - value_selector:
+          - '1777707082747'
+          - rule_hit
+          value_type: boolean
+          variable: rule_hit
+        - value_selector:
+          - '1777707082747'
+          - fraud_candidates_rule_
+          value_type: array[string]
+          variable: fraud_candidates_rule
+        - value_selector:
+          - '1777707082747'
+          - signals_rule_
+          value_type: array[string]
+          variable: signals_rule
+        - value_selector:
+          - '1777707082747'
+          - risk_level_rule_
+          value_type: string
+          variable: risk_level_rule
+        - value_selector:
+          - '1777704603820'
+          - text
+          value_type: string
+          variable: text_raw
+        - value_selector:
+          - '1777704603820'
+          - money_sent
+          value_type: string
+          variable: money_sent
+        - value_selector:
+          - '1777707505741'
+          - text
+          value_type: string
+          variable: classifier_text
+      height: 51
+      id: '1777707755604'
+      position:
+        x: 2090.927278588231
+        y: 122.26666666666668
+      positionAbsolute:
+        x: 2090.927278588231
+        y: 122.26666666666668
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.1
+          mode: chat
+          name: qwen-vl-plus
+          provider: langgenius/tongyi/tongyi
+        prompt_config:
+          jinja2_variables: []
+        prompt_template:
+        - edition_type: basic
+          id: 476a0ef9-72f7-4dac-bdd3-d833898cfc67
+          jinja2_text: "你是一名专业的反诈风险识别专家。你的核心任务是严格分析用户的输入内容，判断其是否涉及网络诈骗，并输出结构化的风险评估结果。\r\
+            \n\r\n**用户输入内容：**\r\n{{query}}\r\n\r\n**请严格遵循以下分析步骤进行思考（你只需在最终输出中体现结论，无需输出思考过程）：**\r\
+            \n1.  **意图提取**：用户的核心诉求或意图是什么？（例如：咨询、求助、转账、提供个人信息等）\r\n2.  **敏感词/模式识别**：输入中是否包含以下高风险特征？\r\
+            \n    - **金钱相关**：提及“转账”、“汇款”、“垫付”、“保证金”、“手续费”、“刷单返利”、“投资理财”、“高收益”、“稳赚不赔”等。\r\
+            \n    - **身份冒充**：提及“客服”、“公安”、“检察院”、“法院”、“银行”、“快递”等身份，并要求进行资金操作。\r\n  \
+            \  - **信息索要**：索要“验证码”、“密码”、“身份证号”、“银行卡号”等敏感信息。\r\n    - **紧急/威胁话术**：使用“最后期限”、“账户将被冻结”、“涉嫌违法”、“影响征信”等制造恐慌的词汇。\r\
+            \n    - **异常链接/APP**：引导点击不明链接或下载陌生APP。\r\n3.  **上下文矛盾分析**：陈述中是否存在不合常理或自相矛盾的地方？（例如：自称官方机构却使用个人账号联系）\r\
+            \n4.  **风险等级综合评估**：基于以上分析，给出最终判断。\r\n\r\n**你必须以如下严格的 JSON 格式输出，且仅输出此 JSON：**"
+          role: system
+          text: "你是一个智能反诈劝阻助手，需根据【风险等级】【行动建议】【判定依据】【用户原始输入】生成最终劝阻话术。\n\n【规则】：\n- 若风险等级为“低”：\n\
+            \  → 语气自然、口语化，像真人聊天，内容简短，**不加任何反诈/诈骗/祝您用餐愉快等无关语句**。\n- 若风险等级为“中”或“高”：\n\
+            \  → 切换为反诈专家模式：先一句话点明风险类型（如“这是典型的刷单返利诈骗”），再给出1~2条具体止损/防范建议，语气专业但易懂。\n\
+            - 无论风险等级，需**严格参考【行动建议】的语气方向**，并结合【判定依据】中的关键信号增强说服力。\n\n【输入变量】：\n- 风险等级：{{#1777815991542.final_risk_level#}}\n\
+            - 行动建议：{{#1777815991542.action_advice#}}\n- 判定依据：{{#1777815991542.judgment_basis#}}\n\
+            - 用户原始输入：{{#1777704603820.text#}}\n- 最终诈骗候选人: {{#1777815991542.final_fraud_candidates#}}\n\
+            \n请根据以上信息生成**最终劝阻话术**："
+        - id: ac3e8b0d-b0b8-4531-91e9-ab4a272bc740
+          role: user
+          text: '[用户原始输入]：{{#1777704603820.text#}}
+
+            [风险等级]：{{#1777815991542.final_risk_level#}}
+
+            [判定依据]：{{#1777815991542.judgment_basis#}}
+
+            [行动建议]：{{#1777815991542.action_advice#}}
+
+            [诈骗候选人]: {{#1777815991542.final_fraud_candidates#}}
+
+
+            请生成符合规则的最终劝阻话术：'
+        selected: false
+        structured_output_enabled: false
+        title: LLM_反诈分析与劝阻生成
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1777708627285'
+      position:
+        x: 2893.4011653298467
+        y: 146.6833333333334
+      positionAbsolute:
+        x: 2893.4011653298467
+        y: 146.6833333333334
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1777708627285'
+          - text
+          value_type: string
+          variable: answer
+        selected: false
+        title: 输出
+        type: end
+      height: 87
+      id: '1777710209901'
+      position:
+        x: 3229.6675878070646
+        y: 122.26666666666668
+      positionAbsolute:
+        x: 3229.6675878070646
+        y: 122.26666666666668
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import json\nimport re\nfrom typing import Dict, Any, List, Tuple\n\
+          \ndef _calculate_similarity_score(query: str, context: str) -> float:\n\
+          \    if not query or not context:\n        return 0.0\n    query_norm =\
+          \ str(query).lower()\n    context_norm = str(context).lower()\n    query_words\
+          \ = set(re.findall(r'[\\u4e00-\\u9fa5a-zA-Z0-9]+', query_norm))\n    context_words\
+          \ = set(re.findall(r'[\\u4e00-\\u9fa5a-zA-Z0-9]+', context_norm))\n    if\
+          \ not query_words:\n        return 0.0\n    intersection = query_words.intersection(context_words)\n\
+          \    return len(intersection) / len(query_words)\n\ndef _parse_llm_classifier_output(classifier_text:\
+          \ str) -> Tuple[str, List[str]]:\n    risk = \"中\"\n    signals = []\n \
+          \   if not classifier_text:\n        return risk, signals\n    try:\n  \
+          \      data = json.loads(classifier_text)\n        if isinstance(data, dict):\n\
+          \            risk = data.get(\"risk_level\", risk)\n            key_sigs\
+          \ = data.get(\"key_signals\", [])\n            if isinstance(key_sigs, list):\n\
+          \                signals = [str(s) for s in key_sigs if s]\n    except json.JSONDecodeError:\n\
+          \        try:\n            pattern = r'\\{[^{}]*\\}'\n            matches\
+          \ = re.findall(pattern, classifier_text, re.DOTALL)\n            if matches:\n\
+          \                data = json.loads(matches[-1])\n                if isinstance(data,\
+          \ dict):\n                    risk = data.get(\"risk_level\", risk)\n  \
+          \                  key_sigs = data.get(\"key_signals\", [])\n          \
+          \          if isinstance(key_sigs, list):\n                        signals\
+          \ = [str(s) for s in key_sigs if s]\n        except Exception:\n       \
+          \     pass\n    return risk, signals\n\ndef _interpret_money_sent(money_input:\
+          \ str) -> Tuple[str, float]:\n    if money_input is None:\n        return\
+          \ \"用户未说明\", 0.5\n    money_lower = str(money_input).strip().lower()\n \
+          \   if not money_lower:\n        return \"未填写\", 0.5\n    if any(word in\
+          \ money_lower for word in [\"是\", \"yes\", \"y\", \"已转\", \"转了\", \"充值了\"\
+          , \"已经转了\", \"付了\"]):\n        return \"是（已转账/充值）\", 0.9\n    if any(word\
+          \ in money_lower for word in [\"否\", \"no\", \"n\", \"未转\", \"没转\", \"没有\"\
+          , \"还没\"]):\n        return \"否（未转账）\", 0.1\n    if any(word in money_lower\
+          \ for word in [\"正要\", \"准备\", \"打算\", \"考虑\", \"可能\", \"不确定\", \"不知道\"\
+          , \"不清楚\"]):\n        return \"用户表示可能/正准备转账\", 0.7\n    return f\"'{money_input}'\
+          \ (含义不明)\", 0.5\n\ndef main(\n    rule_hit: bool,\n    fraud_candidates_rule:\
+          \ str,\n    signals_rule: str,\n    risk_level_rule: str,  # 与图片输入变量名一致\n\
+          \    classifier_text: str,   # 与图片输入变量名一致\n    user_input_text: str,\n \
+          \   money_sent: str,\n    kb_context_text: str    # 与图片输入变量名一致\n) -> Dict[str,\
+          \ Any]:\n    # 直接处理输入参数（无需重命名）\n    rule_hit_bool = bool(rule_hit)\n   \
+          \ fraud_candidates_rule_safe = str(fraud_candidates_rule) if fraud_candidates_rule\
+          \ is not None else \"\"\n    signals_rule_safe = str(signals_rule) if signals_rule\
+          \ is not None else \"\"\n    risk_level_rule_safe = str(risk_level_rule).strip()\
+          \ if risk_level_rule is not None else \"低\"\n    classifier_text_safe =\
+          \ str(classifier_text) if classifier_text is not None else \"\"\n    kb_context_text_safe\
+          \ = str(kb_context_text) if kb_context_text is not None else \"\"\n    user_input_text_safe\
+          \ = str(user_input_text) if user_input_text is not None else \"\"\n    money_sent_raw\
+          \ = str(money_sent) if money_sent is not None else \"\"\n\n    llm_risk,\
+          \ llm_signals = _parse_llm_classifier_output(classifier_text_safe)\n\n \
+          \   rule_candidates_list = [c.strip() for c in fraud_candidates_rule_safe.split('、')\
+          \ if c.strip()]\n    signals_rule_list = [s.strip() for s in re.split(r'[；;]',\
+          \ signals_rule_safe) if s.strip()]\n\n    scores = {\n        \"rule_score\"\
+          : 0.0,\n        \"llm_score\": 0.0,\n        \"kb_score\": 0.0,\n      \
+          \  \"money_sent_score\": 0.0\n    }\n\n    if rule_hit_bool and rule_candidates_list:\n\
+          \        type_count = len(rule_candidates_list)\n        signal_count =\
+          \ len(signals_rule_list)\n        base_score = 0.3 if rule_hit_bool else\
+          \ 0.0\n        scores[\"rule_score\"] = min(base_score + (type_count * 0.1)\
+          \ + (signal_count * 0.05), 1.0)\n\n    risk_map = {\"高\": 0.8, \"中\": 0.5,\
+          \ \"低\": 0.2, \"\": 0.3}\n    scores[\"llm_score\"] = risk_map.get(llm_risk,\
+          \ 0.3)\n\n    scores[\"kb_score\"] = _calculate_similarity_score(user_input_text_safe,\
+          \ kb_context_text_safe)\n\n    money_interpretation, money_score = _interpret_money_sent(money_sent_raw)\n\
+          \    scores[\"money_sent_score\"] = money_score\n\n    weights = {\n   \
+          \     \"rule_score\": 0.25,\n        \"llm_score\": 0.30,\n        \"kb_score\"\
+          : 0.20,\n        \"money_sent_score\": 0.25\n    }\n\n    weighted_sum =\
+          \ sum(scores[key] * weights[key] for key in scores)\n    confidence_score\
+          \ = round(weighted_sum, 3)\n    \n    # 确保 weighted_scores 是数值类型\n    weighted_scores\
+          \ = confidence_score  # 这里明确赋值为数值\n\n    confidence_level = \"低\"\n    action_advice\
+          \ = \"建议核实\"\n\n    if confidence_score >= 0.7:\n        confidence_level\
+          \ = \"高\"\n        action_advice = \"立即劝阻并核实\"\n    elif confidence_score\
+          \ >= 0.4:\n        confidence_level = \"中\"\n        action_advice = \"\
+          明确提示风险并建议核实\"\n    else:\n        confidence_level = \"低\"\n        action_advice\
+          \ = \"保持警惕，建议用户进一步核实\"\n\n    # 完成最终欺诈候选人的赋值\n    final_fraud_candidates\
+          \ = fraud_candidates_rule_safe  # 直接使用规则结果\n    final_risk_level = risk_level_rule_safe\
+          \  # 使用规则风险等级\n\n    # 构建判决依据\n    judgment_basis = (\n        f\"规则命中:\
+          \ {rule_hit_bool}, 欺诈类型: {', '.join(rule_candidates_list)}, \"\n       \
+          \ f\"规则信号: {', '.join(signals_rule_list)}, LLM风险等级: {llm_risk}, \"\n   \
+          \     f\"LLM关键信号: {', '.join(llm_signals)}, KB匹配度: {scores['kb_score']:.2f},\
+          \ \"\n        f\"转账情况: {money_interpretation}\"\n    )\n\n    # 转账解读\n \
+          \   money_interpretation_output = money_interpretation\n\n    # 返回结果，确保所有输出字段类型正确\n\
+          \    return {\n    \"user_input_text\": user_input_text_safe,  # 新增这一行！\n\
+          \    \"confidence_level\": confidence_level,\n    \"action_advice\": action_advice,\n\
+          \    \"final_fraud_candidates\": final_fraud_candidates,\n    \"final_risk_level\"\
+          : final_risk_level,\n    \"judgment_basis\": judgment_basis,\n    \"confidence_score\"\
+          : confidence_score,\n    \"weighted_scores\": weighted_scores,\n    \"money_interpretation\"\
+          : money_interpretation_output\n}"
+        code_language: python3
+        outputs:
+          action_advice:
+            children: null
+            type: string
+          confidence_level:
+            children: null
+            type: string
+          confidence_score:
+            children: null
+            type: number
+          final_fraud_candidates:
+            children: null
+            type: string
+          final_risk_level:
+            children: null
+            type: string
+          judgment_basis:
+            children: null
+            type: string
+          money_interpretation:
+            children: null
+            type: string
+          user_input_text:
+            children: null
+            type: string
+          weighted_scores:
+            children: null
+            type: number
+        selected: false
+        title: PY_置信度综合判断
+        type: code
+        variables:
+        - value_selector:
+          - '1777707082747'
+          - rule_hit
+          value_type: boolean
+          variable: rule_hit
+        - value_selector:
+          - '1777707082747'
+          - fraud_candidates_rule_
+          value_type: string
+          variable: fraud_candidates_rule
+        - value_selector:
+          - '1777707082747'
+          - signals_rule_
+          value_type: string
+          variable: signals_rule
+        - value_selector:
+          - '1777707627587'
+          - risk_level_hint
+          value_type: string
+          variable: risk_level_rule
+        - value_selector:
+          - '1777707505741'
+          - text
+          value_type: string
+          variable: classifier_text
+        - value_selector:
+          - '1777704603820'
+          - text
+          value_type: string
+          variable: user_input_text
+        - value_selector:
+          - '1777704603820'
+          - money_sent
+          value_type: string
+          variable: money_sent
+        - value_selector:
+          - '1777707755604'
+          - context_text
+          value_type: string
+          variable: kb_context_text
+      height: 51
+      id: '1777815991542'
+      position:
+        x: 2479.900754993028
+        y: 133.88627541991096
+      positionAbsolute:
+        x: 2479.900754993028
+        y: 133.88627541991096
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -71.83881191647083
+      y: 384.5410960427872
+      zoom: 0.3298769776932237
+  rag_pipeline_variables: []
